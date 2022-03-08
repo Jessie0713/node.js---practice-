@@ -1,0 +1,14 @@
+<html lang="en">
+  <%- include('./partials/header') %>
+  <body>
+    <%- include('./partials/nav') %>
+    <div class="blogs content">
+      <h2>blog list</h2>
+      <% if(blogs.length>0) {%> <% blogs.forEach(blog => {%>
+      <h3><%= blog.title %> </h3>
+      <p><%= blog.snippet %> </p>
+      <% })%> <% } %>
+    </div>
+    <%- include('./partials/footer') %>
+  </body>
+</html>
