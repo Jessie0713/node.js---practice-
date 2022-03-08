@@ -1,17 +1,22 @@
 //advantages of using express : simplify the process of creating server (includes:setHeader,statuscode,contentType)
 const express = require('express')
-var morgan = require('morgan')
+const morgan = require('morgan')
+const mongoose = require('mongoose')
 //express app
 const app = express()
 
 //use ejs for variables
 //register view engine
-
 app.set('view engine', 'ejs') // default file will be view
 // app.set('views','fileName')
 
-//listen for requests(you don't need to write localhost)
-app.listen('3000')
+// connect to mongodb & listen for requests
+const dbURI =
+  'mongodb+srv://Jessie-test:222222@cluster0.tih1w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err))
 
 // middleware
 // app.use((req, res, next) => {
