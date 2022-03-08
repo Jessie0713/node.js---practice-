@@ -1,5 +1,6 @@
 //advantages of using express : simplify the process of creating server (includes:setHeader,statuscode,contentType)
 const express = require('express')
+var morgan = require('morgan')
 //express app
 const app = express()
 
@@ -11,6 +12,23 @@ app.set('view engine', 'ejs') // default file will be view
 
 //listen for requests(you don't need to write localhost)
 app.listen('3000')
+
+// middleware
+// app.use((req, res, next) => {
+//   console.log('new request made')
+//   console.log('host : ', req.hostname)
+//   console.log('method : ', req.method)
+//   console.log('pathname : ', req.path)
+//   next()
+//   //u need next function to let the server go on
+// })
+
+//third party middleware
+app.use(morgan('dev'))
+
+//for static files(ex: img or css)
+app.use(express.static('public'))
+
 // for get request
 app.get('/', (req, res) => {
   const blogs = [
